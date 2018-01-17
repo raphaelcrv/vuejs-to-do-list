@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World - Vue.js 2</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+    <div id='app'>
+        <h1>{{Title}}</h1>
+
+        
+        <input v-model="myTask">
+        <button v-on:click="addItem">AddItem</button>
+        </br>
+        </br>
+        Tarefa: {{myTask}}
+        
+
+        <ul>
+            <li v-for="(task, index) in tasks">
+               {{task.text}}
+                <button v-on:click="removeEl">X</button>
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                myTask: '',
+                Title: 'Vue ToDo List',
+                tasks: [
+                    { text: ' teste 1 ' },
+                    { text: ' teste 2 ' },
+                    { text: ' teste 3 ' },
+                    { text: ' teste 4 ' }
+                ]
+            },
+            methods: {
+                addItem: function () {
+                    console.log('addItem');                    
+                    app.tasks.push({ text: app.myTask });
+                    app.myTask = '';
+                },
+                removeEl: function (index) {
+                    console.log('removeElement');
+                    this.tasks.splice(index, 1);
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
